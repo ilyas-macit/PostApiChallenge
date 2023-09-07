@@ -1,3 +1,6 @@
+using Business.Abstracts;
+using DataAccess.Abstracts;
+using DataAccess.Concretes;
 using DataAccess.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDb"));
 builder.Services.AddControllers();
+builder.Services.AddScoped<IPostService, PostService>();
+builder.Services.AddScoped<IPostDal, PostDal>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
