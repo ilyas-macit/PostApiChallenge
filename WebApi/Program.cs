@@ -1,4 +1,6 @@
 using Business.Abstracts;
+using Business.Concretes;
+using DataAccess;
 using DataAccess.Abstracts;
 using DataAccess.Concretes;
 using DataAccess.Models;
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection("MongoDb"));
+builder.Services.AddSingleton<ApplicationContext>();
 builder.Services.AddControllers();
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IPostDal, PostDal>();
