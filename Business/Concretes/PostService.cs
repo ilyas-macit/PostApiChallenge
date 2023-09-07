@@ -59,14 +59,15 @@ namespace Business.Concretes
         {
             if (post != null)
             {
-                var filter = Builders<Post>.Filter.Eq("_id", post.Id);
+                var filter = Builders<Post>.Filter.Eq("_id", ObjectId.Parse(post.Id));
                 var updatedPost = _postDal.Get(filter);
                 if (updatedPost != null)
                 {
-                    updatedPost.Title = post.Title;
-                    updatedPost.Description = post.Description;
-                    updatedPost.Tags = post.Tags;
-                    updatedPost.UpdatedAt = post.UpdatedAt;
+                    updatedPost.Title = post.Title == null ? updatedPost.Title : post.Title;
+                    updatedPost.Description = post.Description == null ? updatedPost.Description : post.Description;
+                    updatedPost.ShortDescription = post.ShortDescription == null ? updatedPost.ShortDescription : post.ShortDescription;
+                    updatedPost.Tags = post.Tags == null ? updatedPost.Tags : post.Tags;
+                    updatedPost.UpdatedAt = post.UpdatedAt == null ? updatedPost.UpdatedAt : post.UpdatedAt;
                     _postDal.Update(updatedPost);
                 }
                 return;

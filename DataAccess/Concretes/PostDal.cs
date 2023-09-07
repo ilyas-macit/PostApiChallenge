@@ -42,7 +42,7 @@ namespace DataAccess.Concretes
 
         public void Update(Post post)
         {
-            var filter = Builders<Post>.Filter.Eq("_id", post.Id);
+            var filter = Builders<Post>.Filter.Eq("_id", ObjectId.Parse(post.Id));
             _context.Posts.ReplaceOne(filter, post);
         }
     }

@@ -80,10 +80,10 @@ namespace WebApi.Controllers
                     Post post = new Post
                     {
                         Id = postDto.Id,
-                        Title = postDto.Title,
-                        ShortDescription = postDto.ShortDescription,
-                        Description = postDto.Description,
-                        Tags = postDto.Tags,
+                        Title = postDto?.Title,
+                        ShortDescription = postDto?.ShortDescription,
+                        Description = postDto?.Description,
+                        Tags = postDto?.Tags,
                         UpdatedAt = DateTime.Now
                     };
 
